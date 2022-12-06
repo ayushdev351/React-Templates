@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 
+import ThemeToggler from "./ThemeToggler";
+
 function Navbar() {
   return (
-    <div>
+    <div className="nav">
       <Link to="/" className="list">
         Home
       </Link>
@@ -12,6 +14,7 @@ function Navbar() {
       <Link to="/menu" className="list">
         Menu
       </Link>
+      <ThemeToggler/>
     </div>
   );
 }

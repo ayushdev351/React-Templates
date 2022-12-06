@@ -1,7 +1,29 @@
-body {
+*{
+  margin : 0;
+}
+
+#dark {
   background-color: black;
   color: white;
   text-align: center;
+}
+
+#light {
+  background-color: white;
+  color: dark;
+  text-align: center;
+}
+
+#dark .page{
+  margin-top: 10px;
+  height: 95vh;
+  background-color: #000024;
+}
+
+#light .page{
+  margin-top: 10px;
+  height: 95vh;
+  background-color: pink;
 }
 
 .list {
@@ -11,22 +33,27 @@ body {
   margin: 10px;
 }
 
-.page {
-  margin-top: 10px;
-  height: 90vh;
-  background-color: #000024;
-}
-
 .input {
   font-size: 25px;
   border: 4px aqua solid;
   border-radius: 10px;
 }
 
-.btn {
+.btn{
   margin-left: 10px;
   font-size: 15px;
   padding: 10px;
   background-color: pink;
   border-radius: 5px;
+  cursor: pointer;
+}
+
+#dark .btn {
+  background-color: pink;
+  color: black;
+}
+
+#light .btn{
+  background-color: #2a2a8d;
+  color: white;
 }

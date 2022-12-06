@@ -9,12 +9,19 @@ import Menu from "./Components/Menu";
 import { useState, createContext } from "react";
 
 export const UserContext = createContext();
+export const ThemeContext = createContext();
 
 function App() {
   const [userName, setUserName] = useState("Ayush");
+  const [theme, setTheme] = useState("light");
+
+  const toggleTheme = () => {
+    setTheme((curr) => (curr === "light" ? "dark" : "light"));
+  }
 
   return (
-    <div className="App">
+    <ThemeContext.Provider value = {{theme, toggleTheme}}>
+    <div className="App" id = {theme}>
       <Router>
         <Navbar />
         {/* Wrap all the components where you want to use the value of the context
@@ -29,6 +36,7 @@ function App() {
         </UserContext.Provider>
       </Router>
     </div>
+    </ThemeContext.Provider>
   );
 }
 
