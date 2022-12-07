@@ -1,33 +1,31 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Navbar from "./Components/Navbar";
-import Home from "./Components/Home";
-import Profile from "./Components/Profile";
-import Menu from "./Components/Menu";
-
-import { useState, createContext } from "react";
-
-export const UserContext = createContext();
+import {useState, useEffect} from "react"
 
 function App() {
-  const [userName, setUserName] = useState("Ayush");
+  const [user, setUser] = useState("octocat");
+  const [data, setData] = useState({});
+
+  const changeHandler = (e) => {
+    e.preventDefault();
+    setUser(e.target.value);
+  }
+
+  useEffect(() => {
+
+    fetch(`https://api.github.com/users/${user}`)
+    .then((res) => res.json())
+    .then((data) => setData(data));
+
+    console.log("Effected")
+  }, [user])
 
   return (
     <div className="App">
-      <Router>
-        <Navbar />
-        {/* Wrap all the components where you want to use the value of the context
-        with the provider of the context */}
-        <UserContext.Provider value={{ userName, setUserName }}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/menu" element={<Menu />} />
-            <Route path="*" element={<h1>Error</h1>} />
-          </Routes>
-        </UserContext.Provider>
-      </Router>
+      <h1>User name of </h1>
+      <input onChange={changeHandler}></input>
+      <button onClick ={changeHandler}>enter</button>
+      <h1>is {data.name}</h1>
     </div>
   );
 }
